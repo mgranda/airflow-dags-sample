@@ -33,4 +33,4 @@ task_6 = BashOperator(task_id='task_6', bash_command='echo "Pipeline Ok"', dag=d
 task_7 = BashOperator(task_id='task_7', bash_command='sleep 30', dag=dag)
 
 # Step - 6
-tasks >> task_4 >> task_5 >> task_6
+tasks >> task_5 >> task_6 >> task_7
