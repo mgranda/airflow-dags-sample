@@ -32,9 +32,9 @@ def store_data():
 dag = DAG(dag_id='DAG-Multi-Step-Python-Operator', description='Multistep DAG with Python Operator', default_args=default_args, catchup=False, schedule_interval=timedelta(days=1))
 
 # Step - 5
-load_data = PythonOperator(task_id="scrape", python_callable=load_data, dag=dag)
-process_data = PythonOperator(task_id="scrape", python_callable=process_data, dag=dag)
-store_data = PythonOperator(task_id="scrape", python_callable=store_data, dag=dag)
+load_data = PythonOperator(task_id="load_data", python_callable=load_data, dag=dag)
+process_data = PythonOperator(task_id="process_data", python_callable=process_data, dag=dag)
+store_data = PythonOperator(task_id="store_data", python_callable=store_data, dag=dag)
 
 # Step - 6
 load_data >> process_data >> store_data
