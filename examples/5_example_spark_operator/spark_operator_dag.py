@@ -32,7 +32,7 @@ t1 = SparkKubernetesOperator(
    task_id='spark_pi_submit',
    namespace="airflow",
    application_file="example_spark_kubernetes_spark_pi.yaml",
-   conn_id="kubernetes_default",
+   kubernetes_conn_id ="kubernetes_default",
    do_xcom_push=True,
    dag=dag,
 )
@@ -41,7 +41,7 @@ t2 = SparkKubernetesSensor(
    task_id='spark_pi_monitor',
    namespace="airflow",
    application_name="{{ task_instance.xcom_pull(task_ids='spark_pi_submit')['metadata']['name'] }}",
-   conn_id="kubernetes_default",
+   kubernetes_conn_id ="kubernetes_default",
    dag=dag,
 )
 
