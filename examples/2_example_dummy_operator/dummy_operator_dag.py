@@ -12,7 +12,7 @@ default_args = {
 }
 
 # Step - 3
-dag = DAG(dag_id='DAG-1', default_args=default_args, catchup=False, schedule_interval='@once')
+dag = DAG(dag_id='DAG-Dummy-Operator', default_args=default_args, catchup=False, schedule_interval='@once')
 
 # Step - 4
 start = DummyOperator(task_id='start', dag=dag)
