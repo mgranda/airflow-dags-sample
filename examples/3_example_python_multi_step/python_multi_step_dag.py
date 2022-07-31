@@ -29,7 +29,7 @@ def store_data():
     logging.info("Store Data")
 
 # Step - 4
-dag = DAG(dag_id='DAG-Python-Operator', description='Multistep DAG with Python Operator', default_args=default_args, catchup=False, schedule_interval=timedelta(days=1))
+dag = DAG(dag_id='DAG-Multi-Step-Python-Operator', description='Multistep DAG with Python Operator', default_args=default_args, catchup=False, schedule_interval=timedelta(days=1))
 
 # Step - 5
 load_data = PythonOperator(task_id="scrape", python_callable=load_data)
