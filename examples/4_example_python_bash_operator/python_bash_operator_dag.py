@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python_operator import PythonOperator
+from airflow.utils.dates import days_ago
 
 # Step - 2
 default_args = {
@@ -26,10 +27,10 @@ def process_data(items):
 dag = DAG(dag_id='DAG-Paralell_Python_Bash', description='Paralell DAG with Python Operator and Bash Operator', default_args=default_args, catchup=False, schedule_interval='0 0 * * *')
 
 # Step - 5
-tasks = [BashOperator(task_id='task_{0}'.format(t), bash_command='sleep 30'.format(t)) for t in range(1, 5)]
-task_5 = PythonOperator(task_id='task_4', python_callable=process_data, op_args=['Read 1000 items'])
-task_6 = BashOperator(task_id='task_5', bash_command='echo "Pipeline Ok"')
-task_7 = BashOperator(task_id='task_6', bash_command='sleep 30')
+tasks = [BashOperator(task_id='task_{0}'.format(t), bash_command='sleep 30'.format(t), dag=dag) for t in range(1, 5)]
+task_5 = PythonOperator(task_id='task_4', python_callable=process_data, op_args=['Read 1000 items'], dag=dag)
+task_6 = BashOperator(task_id='task_5', bash_command='echo "Pipeline Ok"', dag=dag)
+task_7 = BashOperator(task_id='task_6', bash_command='sleep 30', dag=dag)
 
 # Step - 6
 tasks >> task_4 >> task_5 >> task_6
