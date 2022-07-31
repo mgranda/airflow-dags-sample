@@ -20,7 +20,7 @@ apiVersion: "sparkoperator.k8s.io/v1beta2"
 kind: SparkApplication
 metadata:
   name: pyspark-pi-dag
-  namespace: spark-apps
+  namespace: airflow
 spec:
   type: Python
   pythonVersion: "3"
