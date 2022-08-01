@@ -30,7 +30,7 @@ extract_tranform = kubernetes_pod_operator.KubernetesPodOperator(
         labels={"app": "etl-app"},
         name="extract-tranform",
         task_id="extract-tranform",
-        get_logs=True
+        get_logs=True, dag=dag
 )
 
 # Step - 5
